@@ -1,0 +1,35 @@
+How Browsers Work Explanation
+
+1. URLs
+   - The process begins when the user enters a URL into the address bar.
+   - The browser performs URL normalization to ensure the address is correctly formatted.
+
+2. HTTP Request
+   - The browser converts the URL into an HTTP request format.
+   - Necessary request headers (like User-Agent, Accept) are prepared.
+
+3. DNS Resolution
+   - The browser cannot use the domain name directly to connect; it needs an IP address.
+   - A DNS (Domain Name System) lookup is performed to resolve the domain name to an IP address.
+
+4. TCP Connection
+   - A Three-way handshake (SYN, SYN-ACK, ACK) establishes a reliable connection between the browser and the server using the TCP protocol.
+
+5. HTTP Exchange
+   - The Request is sent over the established TCP connection.
+   - The Server processes the request and sends back a Response (containing HTML, status code, etc.) to the browser.
+
+6. HTML Parsing
+   - The browser receives the response data (bytes) and converts them into characters, then into Tokens.
+   - These tokens are used to construct the DOM (Document Object Model) tree.
+   - This process is streaming (happens as data arrives) and error-tolerant (browser fixes bad HTML).
+
+7. DOM Importance
+   - The DOM is the in-memory representation of the document.
+   - It is the interface that JavaScript uses to interact with the page.
+   - It is essential for CSS application and querying elements.
+
+8. Rendering Pipeline
+   - Layout: The browser calculates the exact size and position of each element on the screen.
+   - Paint: The browser fills in pixels (colors, images, borders, shadows).
+   - Composite: Layers are stitched together by the GPU to display the final image on the screen.

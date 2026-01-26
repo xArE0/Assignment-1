@@ -1,0 +1,7 @@
+activity
+fragmnet
+lifecycle of activity
+basic UI (linear layout and constraint layout)
+intent
+broadcast
+recycler view

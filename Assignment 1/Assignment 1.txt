@@ -1,0 +1,9 @@
+1. antigravity download
+2. study mindmap -> start form what (for abstract thinking) -> then how
+3. Mermaid plugin in antigravity 
+4. Markdown (document)
+
+Assignment
+
+How browser works?
+How Http works?
