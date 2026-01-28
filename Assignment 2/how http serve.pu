@@ -1,0 +1,51 @@
+@startuml
+|Client|
+start
+:Send HTTP request;
+
+|HTTP Server|
+:Accept connection;
+:Receive request on socket;
+:Parse HTTP request;
+
+if (Is request valid?) then (No)
+  :Prepare 400 Bad Request;
+else (Yes)
+  :Authenticate & Authorize;
+  if (Authorized?) then (No)
+    :Prepare 403 Forbidden;
+  else (Yes)
+    :Route request to handler;
+    if (Static resource?) then (Yes)
+      :Locate file;
+      if (File exists?) then (Yes)
+        :Read file;
+      else (No)
+        :Prepare 404 Not Found;
+      endif
+    else (No)
+      :Execute application logic;
+      if (Database needed?) then (Yes)
+        |Database|
+        :Query database;
+        |HTTP Server|
+        if (Query successful?) then (No)
+          :Prepare 500 Internal Error;
+        else (Yes)
+          :Process Data;
+        endif
+      else (No)
+        :Process Logic;
+      endif
+    endif
+  endif
+endif
+
+:Build HTTP response;
+:Send HTTP response;
+:Log request & status;
+
+|Client|
+:Receive HTTP response;
+stop
+@enduml

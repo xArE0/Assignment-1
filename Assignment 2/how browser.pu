@@ -1,0 +1,39 @@
+@startuml
+|Browser Engine|
+start
+:Receive HTTP response;
+:Check Content-Type;
+
+if (Is HTML?) then (Yes)
+  fork
+    :Tokenize HTML;
+    :Build DOM Tree;
+  fork again
+    :Fetch External Resources\n(CSS, JS, Images);
+    |CSS Engine|
+    :Parse CSS;
+    :Build CSSOM Tree;
+  end fork
+
+  |Browser Engine|
+  :Combine DOM + CSSOM\n(Build Render Tree);
+  
+  if (JavaScript present?) then (Yes)
+    |JS Engine|
+    :Execute Script;
+    |Browser Engine|
+    :Update DOM/CSSOM;
+  endif
+
+  :Layout\n(Calculate geometry/positions);
+  :Paint\n(Fill in pixels, colors, text);
+  :Composite Layers;
+  
+|User|
+:See rendered page;
+stop
+else (No)
+  :Handle as Download/Plugin;
+  stop
+endif
+@enduml
