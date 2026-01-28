@@ -1,29 +1,40 @@
 ```mermaid
 mindmap
   root((How Browsers Work))
-    URLs
-      Address bar input
-      URL normalization
-    HTTP Request
-      URL → HTTP format
-      Request headers
-    DNS Resolution
-      Domain name → IP address
-      DNS system lookup
-    TCP Connection
-      Three-way handshake
-      Reliable connection
-    HTTP Exchange
-      Request sent over TCP
-      Response returns to browser
-    HTML Parsing
-      Bytes → Tokens → DOM tree
-      Streaming & error-tolerant
-    DOM Importance
-      In-memory model
-      Powers JS, CSS, queries
-    Rendering Pipeline
-      Layout: sizes & positions
-      Paint: fill pixels
-      Composite: GPU stitching
+    High Level Components
+      User Interface
+        Address Bar
+        Navigation Buttons
+      Browser Engine
+        Marshals actions between UI and Rendering
+      Data Storage
+        LocalStorage
+        Cookies
+    The Rendering Engine
+      Parsing Phase
+        HTML to DOM Tree
+        CSS to CSSOM Tree
+      Attachment
+        Render Tree Construction
+        Filtering non-visible elements
+      Flow and Geometry
+        Layout stage
+        Reflow calculations
+      Display
+        Painting pixels
+        Compositing layers
+    Script Execution
+      JavaScript Engine
+        Parsing and Compilation
+        Execution Context
+      Main Thread Management
+        Event Loop
+        Call Stack
+    Networking Layer
+      Resource Loading
+        Pre-fetching
+        Parallel downloads
+      Security
+        SOP Same Origin Policy
+        CSP Content Security Policy
 ```

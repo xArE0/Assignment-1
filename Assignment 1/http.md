@@ -1,35 +1,51 @@
 ```mermaid
 mindmap
-  root((HTTP))
-    What is HTTP
-      Browser-Server communication
-      Transfer protocol
-    Process
-      Enter URL
-      DNS lookup
-      Send request
-      Receive response
-      Render page
-    Request
-      Method & version
-      Headers & body
-    Response
-      Status code
-      Headers & body
-    Status Codes
-      1xx: Info
-      2xx: Success
-      3xx: Redirect
-      4xx: Client error
-      5xx: Server error
-    Versions
-      HTTP/1.1: Basic
-      HTTP/2: Faster
-      HTTP/3: QUIC
-    Pros
-      Low resource usage
-      Less congestion
-    Cons
-      Not encrypted
-      High power use
+  root((How HTTP Works))
+    The Actors
+      Client Browser
+        Initiates Requests
+        Parses Content
+      Server
+        Hosts Resources
+        Generates Responses
+    Message Structure
+      Request
+        Methods
+          GET
+          POST
+          PUT
+          DELETE
+        Headers
+          User Agent
+          Accept Language
+          Host
+        Body
+          Form Data
+          JSON Payloads
+      Response
+        Status Codes
+          2xx Success
+          3xx Redirection
+          4xx Client Error
+          5xx Server Error
+        Headers
+          Content Type
+          Cache Control
+          Set Cookie
+        Body
+          HTML Source
+          Static Assets
+          API Data
+    The Communication Process
+      Connection Phase
+        DNS Resolution
+        TCP Three Way Handshake
+        TLS Termination
+      Exchange Phase
+        Request Transmission
+        Server Side Processing
+        Response Delivery
+      Finalization
+        Connection Close or Keep Alive
+        Browser Rendering
 ```

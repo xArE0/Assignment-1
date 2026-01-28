@@ -1,0 +1,106 @@
+-------------------------------------------------------------------
+Assignment 2
+
+Create a activity diagram for 
+
+
+-----------------------------------------------------------------------------------------------------------------
+How browser render response?
+
+@startuml
+|Browser Engine|
+start
+:Receive HTTP response;
+:Check Content-Type;
+
+if (Is HTML?) then (Yes)
+  fork
+    :Tokenize HTML;
+    :Build DOM Tree;
+  fork again
+    :Fetch External Resources\n(CSS, JS, Images);
+    |CSS Engine|
+    :Parse CSS;
+    :Build CSSOM Tree;
+  end fork
+
+  |Browser Engine|
+  :Combine DOM + CSSOM\n(Build Render Tree);
+  
+  if (JavaScript present?) then (Yes)
+    |JS Engine|
+    :Execute Script;
+    |Browser Engine|
+    :Update DOM/CSSOM;
+  endif
+
+  :Layout\n(Calculate geometry/positions);
+  :Paint\n(Fill in pixels, colors, text);
+  :Composite Layers;
+  
+|User|
+:See rendered page;
+stop
+else (No)
+  :Handle as Download/Plugin;
+  stop
+endif
+@enduml
+
+
+-------------------------------------------------------------------------------------------------------
+How http server serve requests?
+
+@startuml
+|Client|
+start
+:Send HTTP request;
+
+|HTTP Server|
+:Accept connection;
+:Receive request on socket;
+:Parse HTTP request;
+
+if (Is request valid?) then (No)
+  :Prepare 400 Bad Request;
+else (Yes)
+  :Authenticate & Authorize;
+  if (Authorized?) then (No)
+    :Prepare 403 Forbidden;
+  else (Yes)
+    :Route request to handler;
+    if (Static resource?) then (Yes)
+      :Locate file;
+      if (File exists?) then (Yes)
+        :Read file;
+      else (No)
+        :Prepare 404 Not Found;
+      endif
+    else (No)
+      :Execute application logic;
+      if (Database needed?) then (Yes)
+        |Database|
+        :Query database;
+        |HTTP Server|
+        if (Query successful?) then (No)
+          :Prepare 500 Internal Error;
+        else (Yes)
+          :Process Data;
+        endif
+      else (No)
+        :Process Logic;
+      endif
+    endif
+  endif
+endif
+
+:Build HTTP response;
+:Send HTTP response;
+:Log request & status;
+
+|Client|
+:Receive HTTP response;
+stop
+@enduml
+
+
