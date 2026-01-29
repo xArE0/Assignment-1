@@ -1,0 +1,12 @@
+Assignment:
+
+1. What is state diagram?
+-> A state diagram is a type of behavioral diagram in the Unified Modeling Language (UML) 
+that describes the behavior of a system or a part of a system in terms of states and transitions between those states.
+-> It is used to model the dynamic behavior of a system, i.e., how the system changes its state in response to events.
+-> A state diagram is a visual representation of the states of an object and the transitions between those states.
+
+2. Draw a state diagram showing how money move from customer card to merchant's account?
+
+
+

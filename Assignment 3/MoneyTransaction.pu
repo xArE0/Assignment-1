@@ -1,0 +1,30 @@
+@startuml
+title Money Movement: Card to Merchant Account
+
+[*] --> Authorized : Customer initiates payment
+note right of Authorized
+  Funds are "blocked" in 
+  Customer's (Issuer) account.
+end note
+
+Authorized --> Captured : Merchant confirms transaction
+note right of Captured
+  Transaction is batched for 
+  clearing with the Acquirer.
+end note
+
+state "Clearing & Settlement" as Clearing {
+  [*] --> Interchange : Issuer sends funds to Acquirer
+  Interchange --> FeeDeduction : MSF (1%, 2%, or 3%) calculated
+  FeeDeduction --> NetFundsReady : Acquirer prepares final payout
+}
+
+Captured --> Clearing : Batch processed by Network
+
+Clearing --> Disbursed : Payout triggered to Merchant
+
+Disbursed --> Credited : Funds hit Merchant's BFI account
+
+Credited --> [*] : Transaction Finalized
+
+@enduml
